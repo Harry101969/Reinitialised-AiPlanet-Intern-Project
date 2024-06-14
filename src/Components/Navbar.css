@@ -165,7 +165,7 @@
     }
 }
 
-@media screen and (max-width:328px) {
+@media screen and (max-width:550px) {
     .Aiplanet_navbar {
         width: 95%;
         display: flex;
