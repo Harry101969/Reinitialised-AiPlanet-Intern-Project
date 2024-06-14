@@ -1,0 +1,198 @@
+.Aiplanet_navbar {
+    width: 98.5%;
+    height: 60px;
+    /* Adjust height as needed */
+    /* Example background color */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #FFFFFF;
+    box-shadow: 0px -8px 25px 0px #00000038;
+    /* Add padding to the navbar */
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+.form-control {
+    display: none;
+}
+
+.custom-file-label {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    /* width: 130.88px;
+    height: 41px; */
+    gap: 1px;
+    opacity: 0px;
+    background-color: #FFFFFF;
+    color: black;
+    border: 1px solid black;
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
+.file_name-Btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    float: right;
+}
+
+.add-icon {
+    font-size: 1.4rem;
+    margin-right: 5px;
+}
+
+.Ai_Planet-logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    /* Ensures that the items are centered vertically */
+}
+
+.pdf-logo {
+    font-size: 17px;
+    padding: 3px;
+    color: #0FA958;
+    border: 0.68px solid #0FA958;
+    border-radius: 4px;
+}
+
+.file-name {
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #0FA958;
+    margin-top: 0;
+    margin-right: 10px;
+}
+
+/* Responsiveness */
+
+@media screen and (min-width: 2000px) {
+    .Aiplanet_navbar {
+        width: 100%;
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .Aiplanet_navbar {
+        width: 95%;
+        display: flex;
+    }
+
+    .custom-file-label {
+        padding: 0.4rem;
+        width: 95.88px;
+        height: 27px;
+        font-size: 13px;
+    }
+
+    .add-icon {
+        font-size: 1rem;
+        left: 0;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .add-icon {
+        font-size: 1.1rem;
+    }
+
+    .Aiplanet_navbar {
+        width: 93.6%;
+        display: flex;
+    }
+
+    .file-name {
+        font-size: 0.8rem;
+        color: #0FA958;
+        margin-left: 10rem;
+    }
+
+    .custom-file-label {
+        padding: 0.4rem;
+        width: 100.88px;
+        height: 32px;
+    }
+
+    .upload-text {
+        font-size: 0.8rem;
+        display: inline-flex;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+    .Aiplanet_navbar {
+        width: 96%;
+        display: flex;
+    }
+
+    .add-icon {
+        margin-right: 1px;
+    }
+
+    .custom-file-label {
+        height: 1.5rem;
+        width: 1.6rem;
+    }
+
+    .file-name {
+        font-size: 0.78rem;
+        color: #0FA958;
+        margin-left: 8rem;
+    }
+
+    .add-icon {
+        font-size: 1.5rem;
+    }
+
+    .upload-text {
+        display: none;
+    }
+}
+
+@media screen and (max-width:328px) {
+    .Aiplanet_navbar {
+        width: 95%;
+        display: flex;
+    }
+
+    .add-icon {
+        font-size: 1.3rem;
+        margin-right: 1px;
+    }
+
+    .custom-file-label {
+        padding: 3px;
+    }
+
+    .pdf-logo {
+        padding: 0.6px;
+        font-size: 1.2rem;
+        margin-left: 0.8rem;
+    }
+
+    .upload-text {
+        display: none;
+    }
+
+    .file-name {
+        font-size: 0.78rem;
+        color: #0FA958;
+        margin-left: 0.2rem;
+    }
+}

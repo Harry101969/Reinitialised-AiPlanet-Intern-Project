@@ -1,0 +1,146 @@
+body,
+html {
+  overflow-x: hidden;
+}
+
+.chat-section {
+  width: 1270px;
+  height: calc(100vh - 160px);
+  /* Adjust based on navbar and input field heights */
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  margin-left: 5px;
+  /* resize: vertical; */
+  overflow-y: scroll;
+  text-decoration: none;
+  /* Remove this line if you do not want vertical resizing */
+}
+
+.question-box,
+.answer-box {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.question-box {
+  background-color: #FFFFFF;
+}
+
+.answer-box {
+  background-color: #FFFFFF;
+}
+
+.question-text,
+.answer-text {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.answer-icon,
+.question-icon {
+  height: 30px;
+}
+
+@media screen and (max-width: 2000px) {
+
+  .answer-icon,
+  .question-icon {
+    height: 30px;
+  }
+
+  .question-text,
+  .answer-text {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
+  .chat-section {
+    margin-top: 10px;
+    width: 99%;
+    height: calc(100vh - 180px);
+  }
+}
+
+@media screen and (max-width: 1050px) {
+
+  .answer-icon,
+  .question-icon {
+    height: 28px;
+  }
+
+  .question-text,
+  .answer-text {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 16px;
+  }
+
+  .chat-section {
+    margin-top: 10px;
+    width: 99%;
+    height: calc(100vh - 176px);
+  }
+}
+
+@media screen and (max-width: 850px) {
+
+  .answer-icon,
+  .question-icon {
+    height: 26px;
+  }
+
+  .question-text,
+  .answer-text {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .chat-section {
+    margin-top: 10px;
+    width: 95%;
+    height: calc(100vh - 172px);
+  }
+}
+
+
+
+@media screen and (max-width: 650px) {
+
+  .answer-icon,
+  .question-icon {
+    height: 24px;
+  }
+
+  .question-text,
+  .answer-text {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    font-size: 14px;
+  }
+
+  .chat-section {
+    margin-top: 10px;
+    width: 475px;
+    height: calc(100vh - 178px);
+  }
+}
+
+@media screen and (max-width:328px) {
+  .chat-section {
+    margin-top: 10px;
+    width: 320px;
+    height: calc(100vh - 160px);
+  }
+}
