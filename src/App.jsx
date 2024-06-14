@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar'
 import InputField from './Components/InputField'
 import Question from './Components/Question';
 import Answer from './Components/Answer';
+import axiosInstance from './axiosInstance';
 import './App.css'
 function App() {
   const [page, setPage] = useState([]);
@@ -14,16 +15,18 @@ function App() {
   const [urls, setUrls] = useState([]); // State to hold URLs detected in PDF
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [qaHistory, setQaHistory] = useState([]); // State to hold questions and answers
-
   useEffect(() => {
-    axios.get('/api/home')
-      .then((res) => {
-        setPage(res.data);
-      })
-      .catch((err) => {
-        console.error('Error fetching data:', err);
-      });
+    fetchPageData();
   }, []);
+
+  const fetchPageData = async () => {
+    try {
+      const res = await axiosInstance.get('/home');
+      setPage(res.data);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+    }
+  };
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -41,17 +44,17 @@ function App() {
     const formData = new FormData();
     formData.append("pdfFile", selectedFile);
     try {
-      setIsLoading(true); // Set loading state to true
-      const result = await axios.post('/api/home', formData, {
+      setIsLoading(true);
+      const result = await axiosInstance.post('/home', formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       console.log('File uploaded successfully', result.data);
       setExtractedText(result.data.extractedText);
-      setUrls(result.data.urls); // Set detected URLs from backend response
+      setUrls(result.data.urls);
     } catch (err) {
       console.error('Error uploading file:', err);
     } finally {
-      setIsLoading(false); // Set loading state to false after request completes
+      setIsLoading(false);
     }
   };
 
@@ -61,29 +64,21 @@ function App() {
 
   const handleQuestionSubmit = async () => {
     try {
-      setIsLoading(true); // Set loading state to true
-
-      // Split the question input based on the '?' separator
+      setIsLoading(true);
       const questionsArray = question.split('?').map(q => q.trim()).filter(q => q.length > 0);
-
-      // Add the current question to the qaHistory
       setQaHistory(prevQaHistory => [...prevQaHistory, { question, answer: '' }]);
-
-      const result = await axios.post('/api/query', { text: extractedText, questions: questionsArray });
+      const result = await axiosInstance.post('/query', { text: extractedText, questions: questionsArray });
       const responses = result.data.responses.map(resp => resp.answer).join('\n');
-
-      // Update the answer for the latest question
       setQaHistory(prevQaHistory => {
         const updatedQaHistory = [...prevQaHistory];
         updatedQaHistory[updatedQaHistory.length - 1].answer = responses;
         return updatedQaHistory;
       });
-
-      setQuestion(''); // Clear the question input after submission
+      setQuestion('');
     } catch (err) {
       console.error('Error getting answer:', err);
     } finally {
-      setIsLoading(false); // Set loading state to false after request completes
+      setIsLoading(false);
     }
   };
 
