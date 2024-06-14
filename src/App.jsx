@@ -21,7 +21,7 @@ function App() {
 
   const fetchPageData = async () => {
     try {
-      const res = await axiosInstance.get('/home');
+      const res = await axiosInstance.get('api/home');
       setPage(res.data);
     } catch (err) {
       console.error('Error fetching data:', err);
@@ -45,7 +45,7 @@ function App() {
     formData.append("pdfFile", selectedFile);
     try {
       setIsLoading(true);
-      const result = await axiosInstance.post('/home', formData, {
+      const result = await axiosInstance.post('api/home', formData, {
         headers: { "Content-Type": "multipart/form-data" }
       });
       console.log('File uploaded successfully', result.data);
