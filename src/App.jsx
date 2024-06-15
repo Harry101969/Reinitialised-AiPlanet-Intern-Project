@@ -11,7 +11,7 @@ function App() {
   const [file, setFile] = useState(null);
   const [extractedText, setExtractedText] = useState('');
   const [question, setQuestion] = useState('');
-  const [urls, setUrls] = useState([]); // State to hold URLs detected in PDF
+
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [qaHistory, setQaHistory] = useState([]); // State to hold questions and answers
 
@@ -47,7 +47,7 @@ function App() {
       });
       console.log('File uploaded successfully', result.data);
       setExtractedText(result.data.extractedText);
-      setUrls(result.data.urls); // Set detected URLs from backend response
+
     } catch (err) {
       console.error('Error uploading file:', err);
     } finally {

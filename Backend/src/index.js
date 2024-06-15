@@ -1,4 +1,3 @@
-
 //Faster one
 const express = require('express');
 const dotenv = require('dotenv');
@@ -55,12 +54,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Initialize Hugging Face Inference API
 const hf = new HfInference(process.env.HUGGINGFACE_API_KEY);
 
-// Function to extract URLs from text using regex
-const extractUrls = (text) => {
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.match(urlRegex) || [];
-};
-
 // Routes
 app.get('/api/home', async (req, res) => {
     const printing = [
@@ -70,7 +63,7 @@ app.get('/api/home', async (req, res) => {
     res.send(printing);
 });
 
-// Updated /api/home endpoint to detect URLs
+// Updated /api/home endpoint without URL extraction
 app.post('/api/home', upload.single('pdfFile'), async (req, res) => {
     try {
         if (!req.file) {
@@ -83,14 +76,10 @@ app.post('/api/home', upload.single('pdfFile'), async (req, res) => {
         // Extract text from PDF
         const dataBuffer = await fs.readFile(filePath);
         let extractedText = '';
-        let urls = []; // Array to store detected URLs
 
         try {
             const pdfData = await pdfParse(dataBuffer);
             extractedText = pdfData.text;
-
-            // Detect URLs in the extracted text
-            urls = extractUrls(extractedText);
         } catch (err) {
             console.error('Error extracting text from PDF:', err);
             return res.status(500).json({ message: 'Error extracting text from PDF', error: err.message });
@@ -114,7 +103,7 @@ app.post('/api/home', upload.single('pdfFile'), async (req, res) => {
             await fs.unlink(filePath);
         }
 
-        return res.status(200).json({ message: 'File uploaded and text extracted successfully', fileName, extractedText, urls });
+        return res.status(200).json({ message: 'File uploaded and text extracted successfully', fileName, extractedText });
     } catch (error) {
         console.error('Error processing request:', error);
         return res.status(500).json({ message: 'Internal server error', error: error.message });
