@@ -10,8 +10,6 @@ cloudinary.config({
     api_key: process.env.CLOUDINARY_API_KEY,
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-
 const uploadOnCloudinary = async (localFilePath) => {
     try {
         if (!localFilePath) return null;
@@ -21,14 +19,7 @@ const uploadOnCloudinary = async (localFilePath) => {
             resource_type: "raw",  // Use raw for files like PDFs
             format: "pdf"
         });
-
-        // If file has been uploaded successfully
-        // console.log("Cloudinary Response:", response);
         console.log("File is uploaded on Cloudinary");
-
-        // Delete the local file after uploading
-        //fs.unlinkSync(localFilePath);
-
         return response;
     } catch (error) {
         // Remove the locally saved temporary file if upload operation failed
